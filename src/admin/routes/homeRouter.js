@@ -9,7 +9,9 @@ router.put("/", authController.protect, homeController.updateHomePage);
 
 router.get("/statistic/:id", statisticController.getStatistic);
 router.patch("/statistic/:id", statisticController.updateStatistic);
+router.get("/statistic", statisticController.getAllStatistic);
 
 router.get("/testimonials/:id", testimonialsController.getTestimonials);
+router.get("/testimonials", testimonialsController.getAllTestimonials);
 router.patch("/testimonials/:id", testimonialsController.updateTestimonials);
 module.exports = router;
