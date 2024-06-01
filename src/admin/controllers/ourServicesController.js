@@ -34,11 +34,11 @@ exports.getOneService = async (req, res) => {
 exports.updateService = async (req, res) => {
   try {
     const { id } = req.params;
-    const { icon, title, paragraph } = req.body;
+    const { title, paragraph } = req.body;
 
     const updatedService = await Services.findByIdAndUpdate(
       id,
-      { icon, title, paragraph },
+      { title, paragraph },
       { new: true }
     );
     if (!updatedService) {

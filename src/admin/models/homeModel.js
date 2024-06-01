@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const homeSchema = new mongoose.Schema({
   title: {
     type: {
@@ -17,17 +18,6 @@ const homeSchema = new mongoose.Schema({
       en: String,
     },
   },
-  statistics: [
-    {
-      title: {
-        type: {
-          ar: String,
-          en: String,
-        },
-      },
-      number: String,
-    },
-  ],
   quote: {
     type: {
       ar: String, // Arabic title
@@ -47,29 +37,6 @@ const homeSchema = new mongoose.Schema({
       en: String,
     },
   },
-  testimonials: [
-    {
-      name: {
-        type: {
-          ar: String,
-          en: String,
-        },
-      },
-      job: {
-        type: {
-          ar: String,
-          en: String,
-        },
-      },
-      description: {
-        type: {
-          ar: String,
-          en: String,
-        },
-      },
-      img: String,
-    },
-  ],
   certificatesTitle: {
     type: {
       ar: String,
@@ -92,4 +59,5 @@ const homeSchema = new mongoose.Schema({
 });
 
 const home = mongoose.model("home", homeSchema);
+
 module.exports = home;

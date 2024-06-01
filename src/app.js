@@ -12,7 +12,6 @@ const homeRouter = require("./admin/routes/homeRouter.js");
 const userRouter = require("./admin/routes/userRouter.js");
 // Start express app
 const app = express();
-/* ksm */
 // Define middleware
 app.use(cors());
 app.use(express.json()); // Parse JSON bodies

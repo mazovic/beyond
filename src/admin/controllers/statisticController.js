@@ -1,29 +1,30 @@
-const homeModel = require("../models/homeModel");
+const statisticsModel = require("../models/statisticModel");
 exports.getStatistic = async (req, res) => {
   try {
-    const home = await homeModel.findOne();
-    if (!home) {
-      return res.status(404).json({ error: "Home not found" });
+    const { id } = req.params;
+
+    const stat = await statisticsModel.findById(id);
+    if (!stat) {
+      return res.status(404).json({ error: "Statistic not found" });
     }
-    const statistic = home.statistic;
-    res.status(200).json({ status: "success", data: { statistic } });
+    res.status(200).json({ status: "success", data: { stat } });
   } catch (err) {
-    res.status(400).json({ status: "fail", message: "Error getting home" });
+    res.status(400).json({ status: "fail", message: "Error getting stat" });
   }
 };
 
 exports.updateStatistic = async (req, res) => {
   try {
-    const { ...body } = req.body;
-    const home = await homeModel.findOneAndUpdate(
-      {},
-      { ...body },
-      { new: true }
-    );
-    const statistic = home.statistic;
-    res.status(200).json({ status: "success", data: { statistic } });
+    const { id } = req.params;
+    const stat = await statisticsModel.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!stat) {
+      return res.status(404).json({ error: "Statistic not found" });
+    }
+    res.status(200).json({ status: "success", data: { stat } });
   } catch (err) {
-    console.error(err);
-    res.status(400).json({ status: "fail", message: "Error getting home" });
+    res.status(400).json({ status: "fail", message: "Error getting stat" });
   }
 };

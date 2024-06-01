@@ -1,8 +1,5 @@
 const mongoose = require("mongoose");
 const ourServiceSchema = new mongoose.Schema({
-  icon: {
-    type: String,
-  },
   title: {
     type: {
       ar: String, // Arabic title
