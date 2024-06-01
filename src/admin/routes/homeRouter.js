@@ -8,10 +8,18 @@ router.get("/", homeController.getHome);
 router.put("/", authController.protect, homeController.updateHomePage);
 
 router.get("/statistic/:id", statisticController.getStatistic);
-router.patch("/statistic/:id", statisticController.updateStatistic);
+router.patch(
+  "/statistic/:id",
+  authController.protect,
+  statisticController.updateStatistic
+);
 router.get("/statistic", statisticController.getAllStatistic);
 
 router.get("/testimonials/:id", testimonialsController.getTestimonials);
 router.get("/testimonials", testimonialsController.getAllTestimonials);
-router.patch("/testimonials/:id", testimonialsController.updateTestimonials);
+router.patch(
+  "/testimonials/:id",
+  authController.protect,
+  testimonialsController.updateTestimonials
+);
 module.exports = router;

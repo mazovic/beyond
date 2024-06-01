@@ -10,12 +10,14 @@ const contactUsRouter = require("./admin/routes/contactUsRouter.js");
 const ourServicesRouter = require("./admin/routes/ourServicesRouter.js");
 const homeRouter = require("./admin/routes/homeRouter.js");
 const userRouter = require("./admin/routes/userRouter.js");
+const evaluationRouter = require("./admin/routes/evaluationRouter.js");
 // Start express app
 const app = express();
 // Define middleware
 app.use(cors());
 app.use(express.json()); // Parse JSON bodies
 app.use("/", sendEmaliRoute);
+app.use("/admin/evaluation", evaluationRouter);
 app.use("/admin/about-us", aboutUsRouter);
 app.use("/admin/contact-us", contactUsRouter);
 app.use("/admin/services", ourServicesRouter);
