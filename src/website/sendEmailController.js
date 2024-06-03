@@ -20,7 +20,7 @@ exports.createMessage = async (req, res, next) => {
   }
   try {
     await contactUs.create(req.body);
-    const chat_id = "https://t.me/Mazovic23";
+    const chat_id = "176569603";
     const message = `${name} want to contact us and his email is ${email} about ${requestType} and he hear about us from ${HowDidYouHearAboutUs}`;
     await sendMessage(chat_id, message);
     // await sendEmail({
