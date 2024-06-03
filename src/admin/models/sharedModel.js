@@ -1,19 +1,24 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 const sharedSchema = new mongoose.Schema({
-  socialIcons: {
+  phone: {
     type: String,
   },
-  constactInfo: {
-    phone: String,
-    email: String,
-    address: String,
-    icon: [String],
-  },
-
-  paragraph: {
+  email: {
     type: String,
-    required: true,
-    trim: true,
+    validate: [validator.isEmail, "Please enter a valid email"],
+  },
+  address: {
+    type: String,
+  },
+  linkedinLink: {
+    type: String,
+  },
+  facebookLink: {
+    type: String,
+  },
+  instagramLink: {
+    type: String,
   },
 });
 
