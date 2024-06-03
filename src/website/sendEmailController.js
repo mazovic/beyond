@@ -1,5 +1,6 @@
 const contactUs = require("../admin/models/contactUsModel");
 const sendEmail = require("./../utils/email");
+const sendMessage = require("./../utils/telegram");
 exports.createMessage = async (req, res, next) => {
   const {
     name,
@@ -18,22 +19,16 @@ exports.createMessage = async (req, res, next) => {
     });
   }
   try {
-    await contactUs.create({
-      name,
-      email,
-      phoneNumber,
-      requestType,
-      HowDidYouHearAboutUs,
-      jobTitle,
-      institution,
-      bestTime,
-    });
-    await sendEmail({
-      sender: "name",
-      email: "the email we want to send to",
-      subject: requestType,
-      message: `${name} want to contact us and his email is ${email} about ${requestType} and he hear about us from ${HowDidYouHearAboutUs}`,
-    });
+    await contactUs.create(req.body);
+    const chat_id = "https://t.me/Mazovic23";
+    const message = `${name} want to contact us and his email is ${email} about ${requestType} and he hear about us from ${HowDidYouHearAboutUs}`;
+    await sendMessage(chat_id, message);
+    // await sendEmail({
+    //   sender: "name",
+    //   email: "the email we want to send to",
+    //   subject: requestType,
+    //   message
+    // });
     res
       .status(201)
       .json({ status: "success", message: "Request has sent successfully" });

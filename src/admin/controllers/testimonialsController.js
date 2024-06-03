@@ -27,7 +27,7 @@ exports.getTestimonials = async (req, res) => {
 exports.updateTestimonials = async (req, res) => {
   try {
     const { id } = req.params;
-    const testimonials = await testimonialsController.findByIdAndUpdate(
+    const testimonials = await testimonialsModel.findByIdAndUpdate(
       id,
       req.body,
       {
