@@ -9,7 +9,10 @@ const sharedSchema = new mongoose.Schema({
     validate: [validator.isEmail, "Please enter a valid email"],
   },
   address: {
-    type: String,
+    type: {
+      ar: String,
+      en: String,
+    },
   },
   linkedinLink: {
     type: String,

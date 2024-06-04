@@ -2,8 +2,12 @@ const mongoose = require("mongoose");
 
 const evaluationSchema = new mongoose.Schema({
   htmlContent: {
-    type: String,
+    type: {
+      ar: String,
+      en: String,
+    },
     required: true,
+    trim: true,
   },
 });
 
