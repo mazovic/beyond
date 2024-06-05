@@ -13,6 +13,7 @@ const ourServicesRouter = require("./admin/routes/ourServicesRouter.js");
 const homeRouter = require("./admin/routes/homeRouter.js");
 const userRouter = require("./admin/routes/userRouter.js");
 const evaluationRouter = require("./admin/routes/evaluationRouter.js");
+const projectRouter = require("./admin/routes/projectRouter.js");
 const sharedRouter = require("./admin/routes/sharedRouter.js");
 const uploadImage = require("./admin/controllers/fileUpload.js");
 // Start express app
@@ -24,6 +25,7 @@ app.use(cors());
 // Parse JSON bodies
 app.use("/", sendEmaliRoute);
 app.use("/admin/evaluation", evaluationRouter);
+app.use("/admin/project", projectRouter);
 app.use("/admin/shared", sharedRouter);
 app.use("/admin/about-us", aboutUsRouter);
 app.use("/admin/contact-us", contactUsRouter);
