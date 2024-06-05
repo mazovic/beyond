@@ -1,3 +1,4 @@
+const userModel = require("../models/userModel");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
@@ -42,10 +43,33 @@ exports.protect = async (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized" });
   }
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
     req.userId = decoded.userId;
     next();
   } catch (err) {
     res.status(401).json({ message: "Invalid token!" });
+  }
+};
+
+exports.WhoAmI = async (req, res) => {
+  try {
+    const id = req.userId;
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "user is no longer exist" });
+    }
+    res.status(200).json({ status: "success", data: { user } });
+  } catch (err) {
+    res.status(500).json({ message: "server interval error" });
+  }
+};
+
+exports.deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await User.findByIdAndDelete(id);
+    res.status(204).json({ status: "success" });
+  } catch (err) {
+    return res.status(404).json({ message: "something wrong" });
   }
 };
