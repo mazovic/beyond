@@ -7,7 +7,17 @@ const projectSchema = new mongoose.Schema({
     },
     required: true,
   },
-  category: String,
+  category: {
+    type: String,
+    enum: [
+      "case_studies",
+      "strategy_planning",
+      "social_media",
+      "brand_development",
+      "content_marketing",
+      "analytics",
+    ],
+  },
   photo: String,
   content: {
     type: {
@@ -16,5 +26,5 @@ const projectSchema = new mongoose.Schema({
     },
   },
 });
-const projectModel = mongoose.model("projectModel", projectSchema);
-module.exports = projectModel;
+const project = mongoose.model("project", projectSchema);
+module.exports = project;

@@ -1,5 +1,26 @@
 const projectModel = require("./../models/projectModel");
 
+exports.addNewProject = async (req, res) => {
+  try {
+    const { title, category, photo, content } = req.body;
+    const project = await projectModel.create({
+      title,
+      category,
+      photo,
+      content,
+    });
+    res.status(200).json({
+      status: "success",
+      data: {
+        project,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: "error getting projects" });
+  }
+};
+
 exports.getAllProjects = async (req, res) => {
   try {
     const projects = await projectModel.find();
