@@ -73,3 +73,13 @@ exports.deleteUser = async (req, res) => {
     return res.status(404).json({ message: "something wrong" });
   }
 };
+
+exports.createUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.create({ email, password });
+    res.status(200).json({ status: "success", data: { user } });
+  } catch (err) {
+    return res.status(404).json({ message: "something wrong" });
+  }
+};
