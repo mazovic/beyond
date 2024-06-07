@@ -4,7 +4,6 @@ const contactUsSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      validate: [validator.isAlpha, " Your name must only contain characters"],
       required: true,
     },
     email: {
