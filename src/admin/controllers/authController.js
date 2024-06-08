@@ -1,7 +1,7 @@
 const userModel = require("../models/userModel");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
-
+const { promisify } = require('util')
 //signing in Token
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
